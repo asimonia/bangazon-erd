@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS Computers;
 DROP TABLE IF EXISTS Departments;
 DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS EmployeesDepartments;
 DROP TABLE IF EXISTS EmployeesComputers;
 DROP TABLE IF EXISTS TrainingPrograms;
 DROP TABLE IF EXISTS EmployeesTrainingPrograms;
@@ -42,9 +43,22 @@ CREATE TABLE `Employees` (
 	FOREIGN KEY(`idDepartments`) REFERENCES `Departments`(`idDepartments`)
 );
 
-INSERT INTO Employees VALUES (null, 'Bob', 'Barker', 0, 1);
-INSERT INTO Employees VALUES (null, 'Joe', 'Schmoe', 0, 1);
-INSERT INTO Employees VALUES (null, 'Jane', 'Doe', 0, 2);
+INSERT INTO Employees VALUES (null, 'Bob', 'Barker', 0);
+INSERT INTO Employees VALUES (null, 'Joe', 'Schmoe', 0);
+INSERT INTO Employees VALUES (null, 'Jane', 'Doe', 0);
+
+CREATE TABLE `EmployeesDepartments` (
+	`idEmployeesDepartments`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`idEmployees`	INTEGER NOT NULL,
+	`idDepartments`	INTEGER NOT NULL,
+	FOREIGN KEY(`idEmployees`) REFERENCES `Employees`(`idEmployees`),
+	FOREIGN KEY(`idDepartments`) REFERENCES `Departments`(`idDepartments`)
+);
+
+INSERT INTO EmployeesDepartments VALUES (null, 0, 1);
+INSERT INTO EmployeesDepartments VALUES (null, 1, 1);
+INSERT INTO EmployeesDepartments VALUES (null, 2, 1);
+
 
 CREATE TABLE `EmployeesComputers` (
 	`idEmployeesComputers`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
